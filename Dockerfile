@@ -1,5 +1,4 @@
 FROM alpine:3.5
-MAINTAINER Cameron Eagans <me@cweagans.net>
 
 # Install needed packages.
 #RUN apt-get -qq update && \
@@ -23,8 +22,18 @@ RUN apk add --no-cache --virtual .build-dependencies build-base curl && \
     apk del .build-dependencies ocaml && \
     rm -rf /tmp/unison-${UNISON_VERSION}
 
+ENV HOME="/home/www-data"
+RUN addgroup -g 82 -S www-data \
+  && adduser -u 82 -D -S -G www-data www-data \
+  && mkdir -p ${HOME}/.unison
+
+# Copy the profile
+COPY drupal.prf ${HOME}/.unison/drupal.prf
+RUN chown -R www-data:www-data ${HOME}
+
 # Copy the bg-sync script into the container.
 COPY sync.sh /usr/local/bin/bg-sync
 RUN chmod +x /usr/local/bin/bg-sync
 
+USER www-data
 CMD ["bg-sync"]

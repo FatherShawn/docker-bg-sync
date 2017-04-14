@@ -1,0 +1,27 @@
+# Sync roots
+root = /source
+root = /var/www
+
+# Sync paths settings
+# These paths only ever change on the host.
+forcepartial = BelowPath docroot -> /source
+forcepartial = BelowPath drush -> /source
+forcepartial = BelowPath vendor -> /source
+
+# Sync options
+auto = true
+backups = false
+batch = true
+contactquietly = true
+maxthreads = 10
+prefer = /source
+repeat = watch
+silent = false
+
+# Files to ignore
+ignore = Path .git/*
+ignore = Path .idea/*
+ignore = Name *___jb_tmp___*
+ignore = Name .DS_Store
+ignore = Name {node_modules,bower_components}
+ignore = Path docroot/sites/default/files
