@@ -35,5 +35,4 @@ RUN chown -R www-data:www-data ${HOME}
 COPY sync.sh /usr/local/bin/bg-sync
 RUN chmod +x /usr/local/bin/bg-sync
 
-USER www-data
 CMD ["bg-sync"]

@@ -14,7 +14,6 @@ backups = false
 batch = true
 contactquietly = true
 maxthreads = 10
-prefer = /source
 repeat = watch
 silent = false
 

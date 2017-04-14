@@ -79,5 +79,5 @@ fi
 
 # Start syncing files.
 log_heading "Starting continuous sync."
-unison drupal
+su -c "unison drupal" -s /bin/sh www-data
 
